@@ -11,13 +11,16 @@
     <h1> Initiation aux bases de données </h1>
 <?php require "connexion.php";?>
     <h2>Apprenants et leurs départements</h2>
+<table>
 <?php
-    
+    $apprenants = $bdd->query('SELECT * FROM apprenants INNER JOIN departement ON apprenants.id_departement = departement.departement_code');
 
-
-
-
-
+    while ($donnees = $apprenants->fetch())
+	{
+		echo '<tr><td>'.$donnees['prenom'].'</td><td>'.$donnees['departement_code'].'</td><td>'.$donnees['departement_nom'].'</td></tr>';
+	}
+	$apprenants->closeCursor();
 ?>
+</table>
 </body>
 </html>
